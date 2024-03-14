@@ -1,0 +1,143 @@
+<resources>
+    <string name="app_name">GhostAI Simulator</string>
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="home_assistant_setup_steps">
+
+    Setup Home Assistant on a compatible device (E.G., old computer, raspberry pi, etc.):
+
+    \n\n1.      Steps for Raspberry Pi 3/4:
+
+    \n\n\ta.      Connect Pi to Local network – Two options:
+
+    \n\t\ti.     Create CONFIG USB Drive
+
+    \n\t\t\t1.      Format USB Drive as FAT32 or MS-DOS FAT. Name Drive “CONFIG”
+
+    \n\t\t\t2.      Create Directory called “network”
+
+    \n\t\t\t3.      Create a file with no extension called “my-network”
+
+    \n\t\t\t4.      Paste this into file (fill in \'Your Wifi Name Here\' and \'Your Wifi Password Here\')
+    \n\t\tii. Connect Pi to Router via Ethernet Cable
+
+    \n\t\t\1. That’s it… :)
+
+    \n\n\tb. Create Home Assistant Micro-SD
+
+        \n\t\ti. Install Raspberry Pi Imager
+
+        \n\t\tii. Insert SD Card into Computer
+
+        \n\t\tiii. In Imager select SD card from “Storage”
+
+        \n\t\tiv. Navigate to “Operating System” -&gt; “Other specific-purpose OS” -&gt; “Home assistants and home automation” -&gt; “Home Assistant” -&gt; Choose version compatible with your Pi version.
+
+        \n\t\tv. Press “Write”
+
+    \n\n\tc. Start Home Assistant Server
+
+        \n\t\ti. Insert SD Card into Raspberry Pi
+
+        \n\t\tii. Insert USB Drive into Raspberry Pi (if opting with CONFIG USB Drive)
+
+        \n\t\tiii. Connect Raspberry Pi into power source (at least 5V, 3A)
+
+    \n\n2. Access Dashboard and configure Home Assistant (Should automatically detect IoT devices nearby)
+
+        \n\n\ta. In a web browser, navigate to <a href="http://homeassistant.local:8123">http://homeassistant.local:8123</a>
+
+        \n\n\tb. You should see this screen:
+        \n\n\tc. This means the Home Assistant Server is running. Wait until preparation is complete.
+
+        \n\n\td. Once the process is complete, you will be directed to refresh the page.
+
+        \n\n\te. Follow steps on this page to setup Home Assistant.</string>
+    <string name="configuration_steps">
+        Configure Home Assistant to work with GhostAI™:
+
+\n\n1.      Setup API (currently not working) – Two options:
+
+\n\n\ta.      Create Access Token (Needed in app to connect to server)
+        \n\t\ti.     Log in to your Home Assistant web interface.
+
+        \n\t\tii.     Click on your user profile picture or username in the top-right corner of the Home Assistant interface.
+
+        \n\t\tiii.     In the user profile menu, select "Long-Lived Access Tokens."
+
+        \n\t\tiv.     Click the "Create Token" button or a similar option to create a new access token.
+
+        \n\t\tv.     Provide a name for the token to help you identify its purpose
+
+        \n\t\tvi.     Grant permissions related to reading states and controlling devices.
+
+        \n\t\tvii.     Set expiration date for token (more secure) or leave it unset (more convenient)
+
+        \n\t\tviii.     Click the "Create" or "Generate" button to create the access token.
+
+        \n\t\tix.     Copy and securely save this token, as it will be asked for in the app.
+
+\n\n\tb.      Use your Log-In credentials created in step 2 – no additional setup needed
+
+\n\n\n2.      Download Log files (This step should be done after allowing 2+ weeks for the Home Assistant server to collect log-files) \nNote: For demonstrative purposes I’ve exported logs from my home and included them in the zip file for you to try!
+
+\n(This step is a workaround due to the limited functionality of the Home Assistant REST API, 2.0 will automatically retrieve logs from server)
+
+\n\n\ta.      Navigate to the History Explorer tab in Home Assistant.
+
+\n\n\tb.      Select the devices you would like to export the logs for.
+
+\n\n\tc.      Select the time frame for the logs (recommended 1month+)
+
+\n\n\td.      Press the small arrow, select ‘export to csv’
+</string>
+    <string name="using_the_app_steps">
+        Using the App:
+    \n\n\t1.      Run application – Two options:
+
+    \n\n\t\ta.      Run .exe file (stripped down version – had to be done due to dependency issues when compressing python files)
+
+    \n\t\t\ti.     Run as Administrator on 64bit system.
+
+    \n\t\t\tii.     That’s it :)
+
+    \n\n\t\tb.      Run python files (full functionality – requires you to have python and install dependencies)
+
+    \n\t\t\ti.     Install Python 3.0 or higher
+
+    \n\t\t\tii.     Open terminal, run this command (or run dependencies.sh as administrator)
+
+    \n\t\t\tiii.     Open main directory of application
+
+    \n\t\t\tiv.     Navigate to build folder
+
+    \n\t\t\tv.     Run ‘welcome_page.py’
+
+    \n\n\t2.      Navigating the App:
+
+    \n\n\t\ta.      Press Next to move to the log-in screen or press Help to access this document.
+
+    \n\n\t\tb.      Enter your Home Assistant username and password to connect to the Home Assistant REST API (feature currently disabled due to inadequate API support from Home Assistant – will be addressed in 2.0) – Press Next
+
+    \n\n\t\tc.      Press Select under ‘Select Log File:’ – Select the Log file you exported earlier (or provided sample logs)
+
+    \n\n\t\td.      Enter date range you would like GhostAI™ to simulate occupancy in your home within (minimum 1 week – due to how the AI is trained it expects at least 1 week in the predict, may be changed in 2.0).
+
+   \n\n\t\te.      Press Generate Automation
+
+    \n\n\t\tf.       Press Copy, paste this here, give the file a title of /config/automations.yaml, press Save (manual workaround due to inadequate functionality in Home Assistant’s default REST API – in 2.0 custom Home Assistant build will be created to modify API functionality according to GhostAI’s needs)
+
+    \n\n\t\tg.      Optional: Press View Graphs to view time of day where GhostAI is most active (what times will it activate the most devices in), in addition to graphs which give insight into performance of the Gradient Boosting algorithm (model used to predict future behavior)
+
+    \n\n\t\th.      Optional: Reload Home Assistant Configuration files by navigating to the system page, pressing the power button, then pressing ‘Quick Reload’ (done automatically every few hours but you can do it manually to speed things up)
+
+    \n\t\t\ti.       Optional: View your new automations!
+
+
+
+    \n\n\nCongratulations! GhostAI™ is now protecting your home!
+
+    \n\nKeep your mind at ease and enjoy your time away!
+
+    </string>
+
+</resources>
